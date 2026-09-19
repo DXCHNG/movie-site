@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 
 const API_URL = "https://www.omdbapi.com/?apikey=a9256e35&s=";
-function useMovieSearch(initialQuery) {
-  const [query, setQuery] = useState(initialQuery)
-  const URL= API_URL+query
+function useMovieSearch(query) {
+  
+  let URL= API_URL
+  if(query===""){
+    URL=API_URL+"2024"
+  }else{
+    URL=API_URL+query
+  }
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [eror, setError] = useState(false);
+  const [error, setError] = useState(false);
   useEffect(() => {
     async function fetchMovies() {
       try {
@@ -24,7 +29,7 @@ function useMovieSearch(initialQuery) {
     fetchMovies();
   }, [query]);
   console.log(data)
-  return { data, loading, eror };
+  return { data, loading, error };
 }
 
 export default useMovieSearch;

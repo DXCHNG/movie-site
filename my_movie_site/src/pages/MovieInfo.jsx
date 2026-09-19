@@ -2,18 +2,27 @@ import NavBar from "../components/NavBar"
 import {
   Navigate,
   useLocation,
-  
+  useNavigate,
   useParams,
 } from "react-router-dom";
 
 function MovieInfo(){
   const location = useLocation()
-  
+   const navigate = useNavigate();
 
   return(
     <div className="bg-black min-h-screen">
       <NavBar></NavBar>
+       <div>
+        <button
+            onClick={() => navigate(-1)}
+            className="text-white px-10 py-3 mt-3 mb-5 w-40 "
+          >
+            ⬅️ Back
+          </button>
+          </div>
       <div className="flex flex-row gap-7 py-12 px-3">
+       
     <div>
       <img src="https://m.media-amazon.com/images/M/MV5BNDJjNmQ2YzQtYjZlYS00MWJkLWE3ODctMGU0ZmMyZmVhNDEzXkEyXkFqcGc@._V1_SX300.jpg"></img>
     </div>

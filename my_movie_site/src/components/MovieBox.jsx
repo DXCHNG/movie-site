@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 function MovieBox({movie}){
 
   return(
-    <Link to={`/movie_info/${encodeURIComponent(movie)}`} state={(movie)}>
+    <Link to={`/details/${movie.imdbID}`} state={movie}>
     
    
       <div className="flex flex-col">

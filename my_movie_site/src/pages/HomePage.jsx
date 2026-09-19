@@ -5,14 +5,15 @@ import useMovieSearch from "../hooks/useMovieSearch";
 import { useState } from "react";
 
 function HomePage() {
-  const [saveSearch, setSaveSearch]= useState("2024")
-  
-  const { data, loading, error } = useMovieSearch(saveSearch);
-  const navigate = useNavigate()
+  const [saveSearch, setSaveSearch] = useState("");
+  const [buttonSaveSearch, setButtonSaveSearch] = useState('');
+
+  const { data, loading, error } = useMovieSearch("");
+  const navigate = useNavigate();
 
   return (
     <div className="bg-black min-h-screen">
-      <NavBar value={saveSearch} onChange={setSaveSearch}></NavBar>
+      <NavBar value={saveSearch} onChange={setSaveSearch} onSubmit={(query)=>{navigate(`/search/${encodeURIComponent(query)}`)}}></NavBar>
       <div className="bg-white/10 flex flex-col px-8 py-28 justify-items-center items-center mt-3 gap-3 min-h-60">
         <a className="text-red-700">REFINER ACADEMY- WEEK 4</a>
         <a className="text-white font-bold text-4xl">
@@ -25,20 +26,24 @@ function HomePage() {
           film.{" "}
         </a>
         <div>
-          <input onChange={(newSearch)=>setSaveSearch(newSearch.target.value)}
-            className="bg-white/10 border rounded-lg w-60 py-2 px-4"
+          
+          <input
+            value={buttonSaveSearch}
+            
+            onChange={(newSearch) => setButtonSaveSearch(newSearch.target.value)}
+            className="bg-white/10 border rounded-lg w-60 py-2 px-4 text-white"
             placeholder="Search a movie tittle..."
           ></input>
-          
-          <button onClick={() => {setSaveSearch("game")}
-           
-          } className="border rounded-lg  bg-red-700 ml-4 py-2 px-4 text-white">
+
+          <button
+            onClick={() => navigate(`/search/${encodeURIComponent(buttonSaveSearch)}`)}
+            className="border rounded-lg  bg-red-700 ml-4 py-2 px-4 text-white"
+          >
             Search
           </button>
-        
         </div>
       </div>
-      <div className=" flex flex-row text-white/40 px-4  bg-white/10  justify-center gap-72 md:gap-10">
+      <div className=" flex flex-row text-white/40 px-4  bg-white/10  justify-center gap-72 md:gap-10 py-5">
         <div>
           <a className="text-white font-bold text-2xl mr-7">
             Popular right now
