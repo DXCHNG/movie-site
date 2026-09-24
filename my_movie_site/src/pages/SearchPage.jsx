@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 function SearchPage() {
   const { query = "" } = useParams();
   const [searchQuery, setSearchQuery] = useState(query);
-  const { data, loading, error, Search } = useMovieSearch(query);
+  const { data, loading, error} = useMovieSearch(query);
   const navigate = useNavigate();
 
   return (
@@ -20,31 +20,16 @@ function SearchPage() {
           navigate(`/search/${encodeURIComponent(query)}`);
         }}
       ></NavBar>
-      <div className="flex flex-row justify-between px-28">
+      <div className="flex flex-row justify-between px-10 md:px-28 py-10">
         <div className="flex flex-col">
-          <a className="font-bold, text-3xl">Results for "{query}"</a>
-          <a className="text-white/35">383 movies found</a>
+          <a className="font-bold text-white/45 text-3xl">Results for "{query}"</a>
+          <a className="text-white/35">{data?.Search?.length || 0} movies found</a>
         </div>
-        <div className="border rounded-lg bg-white/10 border-black">
-          <select className="border rounded-lg bg-white/10 border-black text-white">
-            <option className="border rounded-lg bg-white/10 border-black">
-              relevance
-            </option>
-            <option className="border rounded-lg bg-white/10 border-black">
-              newest first
-            </option>
-            <option className="border rounded-lg bg-white/10 border-black">
-              oldest first
-            </option>
-            <option className="border rounded-lg bg-white/10 border-black">
-              A-Z
-            </option>
-          </select>
-        </div>
+       
       </div>
-      <div className="grid grid-cols-5 gap-4 px-28 py-8">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 px-10 md:px-28 py-8">
         {!loading && !error ? (
-          data.Search?.map((movie) => <MovieBox movie={movie}></MovieBox>)
+          data.Search?.map((movie) => <MovieBox  key={movie.imdbID} movie={movie}></MovieBox>)
         ) : (
           <div></div>
         )}

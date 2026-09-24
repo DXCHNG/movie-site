@@ -14,7 +14,7 @@ function HomePage() {
   return (
     <div className="bg-black min-h-screen">
       <NavBar value={saveSearch} onChange={setSaveSearch} onSubmit={(query)=>{navigate(`/search/${encodeURIComponent(query)}`)}}></NavBar>
-      <div className="bg-white/10 flex flex-col px-8 py-28 justify-items-center items-center mt-3 gap-3 min-h-60">
+      <div className="bg-white/10 flex flex-col px-8 py-28 justify-items-center items-center mt-3 gap-3 min-h-60 text-center">
         <a className="text-red-700">REFINER ACADEMY- WEEK 4</a>
         <a className="text-white font-bold text-4xl">
           Discover your next{" "}
@@ -31,35 +31,35 @@ function HomePage() {
             value={buttonSaveSearch}
             
             onChange={(newSearch) => setButtonSaveSearch(newSearch.target.value)}
-            className="bg-white/10 border rounded-lg w-60 py-2 px-4 text-white"
+            className="bg-white/10 border rounded-lg w-32 md:w-60 py-2 px-4 text-white"
             placeholder="Search a movie tittle..."
           ></input>
 
           <button
             onClick={() => navigate(`/search/${encodeURIComponent(buttonSaveSearch)}`)}
-            className="border rounded-lg  bg-red-700 ml-4 py-2 px-4 text-white"
+            className="border rounded-lg  bg-red-700 ml-2 md:ml-4 py-2 px-4 text-white"
           >
             Search
           </button>
         </div>
       </div>
-      <div className=" flex flex-row text-white/40 px-4  bg-white/10  justify-center gap-72 md:gap-10 py-5">
+      <div className=" flex flex-row text-white/40 px-2 md:px-4  bg-white/10  justify-center gap-4 md:gap-10 lg:gap-72  py-5">
         <div>
-          <a className="text-white font-bold text-2xl mr-7">
+          <a className="hidden md:block text-white font-bold text-2xl mr-7">
             Popular right now
           </a>
         </div>
-        <div className=" flex flex-row text-white/40 px-4 gap-10 md:gap-4 justify-items-center items-center justify-center">
-          <a>All</a>
-          <a>Action</a>
-          <a>Comedy</a>
-          <a>Drama</a>
-          <a>Horror</a>
-          <a>Sci-Fi</a>
-          <a>Animation</a>
+        <div className=" flex flex-row text-white/40 px-2 md:px-4 gap-2  justify-items-center items-center justify-center">
+          <button>All</button>
+          <button>Action</button>
+          <button>Comedy</button>
+          <button>Drama</button>
+          <button>Horror</button>
+          <button>Sci-Fi</button>
+          <button>Animation</button>
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-7 px-28">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-7 px-10 md:px-28">
         {!loading && !error ? (
           data.Search.map((movie) => <MovieBox movie={movie}></MovieBox>)
         ) : (
