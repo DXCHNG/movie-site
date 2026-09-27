@@ -20,6 +20,12 @@ function SearchPage() {
           navigate(`/search/${encodeURIComponent(query)}`);
         }}
       ></NavBar>
+      <button
+            onClick={() => navigate(-1)}
+            className="text-white px-10 py-3 mt-3 mb-5 w-40 "
+          >
+            ⬅️ Back
+          </button>
       <div className="flex flex-row justify-between px-10 md:px-28 py-10">
         <div className="flex flex-col">
           <a className="font-bold text-white/45 text-3xl">Results for "{query}"</a>
